@@ -1,0 +1,28 @@
+<mat-card class="week-card">
+  <mat-card-header>
+    <mat-card-title>Week Beginning</mat-card-title>
+    <mat-card-subtitle>{{ date }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <!--<img matCardImage src="../../assets/golfBanner.jpg">-->
+  <div class="banner"></div>
+  <mat-card-content>
+
+    <mat-selection-list *ngIf="currentUser">
+      <mat-list-option *ngFor="let user of currentUser">
+        {{ user.displayName }} | Membership No: {{ user.memNo }}
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-list>
+      <mat-list-item *ngFor="let golfer of golfers">
+        {{ golfer.displayName }} | Membership No: {{ golfer.memNo }}
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card-content>
+</mat-card>
+
+<br/>

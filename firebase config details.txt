@@ -1,0 +1,6 @@
+apiKey: "AIzaSyBQGYoEeiaUfqJXrpMdDLxqHO7tq90oxEA",
+    authDomain: "troongolf-2b794.firebaseapp.com",
+    databaseURL: "https://troongolf-2b794.firebaseio.com",
+    projectId: "troongolf-2b794",
+    storageBucket: "troongolf-2b794.appspot.com",
+    messagingSenderId: "588056701624"

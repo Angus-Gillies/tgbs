@@ -1,0 +1,30 @@
+
+<mat-toolbar color="primary">
+  <h2 mat-dialog-title="" align="center">Login</h2>
+</mat-toolbar>
+<br>
+
+<form [formGroup]="userForm" (ngSubmit)="login()">
+  <mat-dialog-content align="end">
+
+      <mat-form-field class="fullWidth">
+        <mat-placeholder>
+          Email
+        </mat-placeholder>
+        <input matInput type="email" class="input"  formControlName="email" required autocomplete="off">
+      </mat-form-field>
+
+      <mat-form-field class="fullWidth">
+<!--
+        <input matInput type="password" class="input" [class.is-danger]="password.invalid && password.touched" placeholder="password" formControlName="password" required >
+-->
+        <input matInput type="password" class="input" placeholder="password" formControlName="password" required >
+
+      </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>cancel</button>
+    <button mat-raised-button type="submit" color="primary">Submit</button>
+  </mat-dialog-actions>
+  <mat-progress-bar mode="indeterminate" *ngIf="gettingData"></mat-progress-bar>
+</form>

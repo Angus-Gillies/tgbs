@@ -1,0 +1,19 @@
+:host {
+
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+
+}
+
+:host /deep/ router-outlet ~ * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+:host .main {
+  flex: 1;
+  position: relative;
+}
+

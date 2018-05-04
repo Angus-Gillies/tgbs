@@ -1,0 +1,16 @@
+<header>
+  <nav role="navigation">
+    <app-navigation></app-navigation>
+  </nav>
+</header>
+<mat-card>
+  <h2 class="bounce-test" [@bounce]="bounce">Test FireBase and FireStore Angular app</h2>
+
+  <div  [@cards] >
+    <div *ngFor="let date of weekBeginning" >
+      <app-week-card [date] = date [currentUser]="currentUser" [golfers]="golfers"></app-week-card>
+    </div>
+  </div>
+
+</mat-card>
+

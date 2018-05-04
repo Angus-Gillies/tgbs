@@ -1,0 +1,35 @@
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>FireBase App</span>
+      <span class="example-spacer"></span>
+
+      <a mat-button="" [routerLink]="['/']">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <a *ngIf="auth.authState" mat-button="" [routerLink]="['/dashboard']">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+
+      <a  *ngIf="!auth.authState" mat-button="" (click)="openDialog()">
+        <mat-icon>account_box</mat-icon>
+        <span>Login</span>
+      </a>
+      <a  *ngIf="auth.authState" mat-button="" >
+        <mat-icon>account_box</mat-icon>
+        <span (click)="signOut()">
+          logout
+        </span>
+        <span *ngFor="let user of currentUser">{{ user.displayName }}</span>
+      </a>
+
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+
+

@@ -1,0 +1,10 @@
+.fullWidth {
+  width: 100%;
+}
+
+.mat-dark{
+  color: grey;
+  width: 24px;
+  margin: 20px 40px 0 0;
+}
+
