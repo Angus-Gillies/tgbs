@@ -6,27 +6,32 @@
 
       <a mat-button="" [routerLink]="['/']">
         <mat-icon>home</mat-icon>
-        <span>Home</span>
       </a>
 
-      <a *ngIf="auth.authState" mat-button="" [routerLink]="['/dashboard']">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </a>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+        Menu
+      </button>
+      <mat-menu #menu="matMenu">
+        <div *ngIf="auth.authState">
+          <mat-icon>golf_course</mat-icon>
+          <span *ngFor="let user of currentUser">{{ user.displayName }}</span>
+          <mat-divider></mat-divider>
+        </div>
 
-      <a  *ngIf="!auth.authState" mat-button="" (click)="openDialog()">
-        <mat-icon>account_box</mat-icon>
-        <span>Login</span>
-      </a>
-      <a  *ngIf="auth.authState" mat-button="" >
-        <mat-icon>account_box</mat-icon>
-        <span (click)="signOut()">
-          logout
-        </span>
-        <span *ngFor="let user of currentUser">{{ user.displayName }}</span>
-      </a>
-
-
+        <button *ngIf="auth.authState" [routerLink]="['/dashboard']" mat-menu-item>
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+        <button *ngIf="!auth.authState" (click)="openDialog()" mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          Login
+        </button>
+        <button *ngIf="auth.authState" (click)="signOut()" mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
 

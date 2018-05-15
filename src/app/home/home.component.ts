@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   // public posts: any;
 
   constructor( public authService: AuthService, public userService: UserService, public weeks: WeekDatesService) {
-    this.weekBeginning = this.weeks.weeks;
+    this.weekBeginning = this.weeks.weeksBeginning;
   }
 
 

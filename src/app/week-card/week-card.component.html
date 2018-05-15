@@ -1,28 +1,109 @@
-<mat-card class="week-card">
+
+<mat-card class="week-card" *ngFor="let week of weeks | async">
   <mat-card-header>
-    <mat-card-title>Week Beginning</mat-card-title>
-    <mat-card-subtitle>{{ date }}</mat-card-subtitle>
+    <mat-card-title><strong>Week Beginning:</strong> {{ week.weekBeginning }}</mat-card-title>
   </mat-card-header>
 
-  <!--<img matCardImage src="../../assets/golfBanner.jpg">-->
-  <div class="banner"></div>
+
+  <img matCardImage src="../../assets/golfBanner.jpg">
+  <!--<div class="banner"></div>-->
   <mat-card-content>
 
-    <mat-selection-list *ngIf="currentUser">
-      <mat-list-option *ngFor="let user of currentUser">
-        {{ user.displayName }} | Membership No: {{ user.memNo }}
-        <mat-divider></mat-divider>
-      </mat-list-option>
-    </mat-selection-list>
+    <!-- Dashboard listing -->
+    <!--<mat-selection-list *ngIf="currentUser">-->
+      <!--<table mat-table=""  [dataSource]="dataSource">-->
+        <!--&lt;!&ndash; Name Col &ndash;&gt;-->
+        <!--<ng-container matColumnDef="name">-->
+          <!--<th mat-header-cell="" *matHeaderCellDef="">Name</th>-->
+          <!--<td mat-cell="" *matCellDef="let user"> {{ user.name }}</td>-->
+        <!--</ng-container>-->
+
+        <!--&lt;!&ndash; Member No Col &ndash;&gt;-->
+        <!--<ng-container matColumnDef="memNo">-->
+          <!--<th mat-header-cell="" *matHeaderCellDef="">Membership No:</th>-->
+          <!--<td mat-cell="" *matCellDef="let user"> {{ user.memNo }}</td>-->
+        <!--</ng-container>-->
+
+        <!--&lt;!&ndash; Available Col &ndash;&gt;-->
+        <!--<ng-container matColumnDef="available">-->
+          <!--<th mat-header-cell="" *matHeaderCellDef="">Available</th>-->
+          <!--<td mat-cell="" *matCellDef="let user"> {{ user.available }}</td>-->
+        <!--</ng-container>-->
+
+        <!--<tr mat-header-row="" *matHeaderRowDef="displayedColumns"></tr>-->
+        <!--<tr mat-row="" *matRowDef="let row; columns: displayedColumns;"></tr>-->
+      <!--</table>-->
+    <!--</mat-selection-list>-->
+
 
     <mat-list>
-      <mat-list-item *ngFor="let golfer of golfers">
-        {{ golfer.displayName }} | Membership No: {{ golfer.memNo }}
-        <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let day of week.days">
+        <h2 matLine> {{ day }} :</h2>
+        <p matLine>Course: {{ week.course }}, Tee Time: {{ week.teeTime }}</p>
+        <mat-divider matLine></mat-divider>
+        <p matLine>
+          <mat-chip-list >
+            <span *ngIf="day === 'Monday' && week.Monday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Monday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Monday' && week.Monday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Tuesday' && week.Tuesday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Tuesday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Tuesday' && week.Tuesday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Wednesday' && week.Wednesday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Wednesday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Wednesday' && week.Wednesday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Thursday'  && week.Thursday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Thursday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Thursday' && week.Thursday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Friday' && week.Friday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Friday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Friday' && week.Friday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Saturday' && week.Saturday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Saturday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Saturday' && week.Saturday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+            <span *ngIf="day === 'Sunday' && week.Sunday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Sunday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Sunday' && week.Sunday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
+          </mat-chip-list>
+        </p>
+        <mat-divider matLine></mat-divider>
       </mat-list-item>
     </mat-list>
+
+
+
+
+
+    <!-- Homepage listing -->
+    <!--<mat-list>-->
+      <!--<mat-list-item *ngFor="let golfer of golfers">-->
+        <!--{{ golfer.displayName }} | Membership No: {{ golfer.memNo }}-->
+        <!--<mat-divider></mat-divider>-->
+      <!--</mat-list-item>-->
+    <!--</mat-list>-->
 
   </mat-card-content>
 </mat-card>
 
-<br/>
+<br />

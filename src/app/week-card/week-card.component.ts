@@ -1,5 +1,11 @@
 import {Component, Input, OnChanges, SimpleChanges, SimpleChange} from '@angular/core';
 
+import { WeekDatesService } from '../core/week-dates.service';
+import { UserService } from '../core/user.service';
+import {map} from 'rxjs/operators';
+import {forEach} from '@angular/router/src/utils/collection';
+import {format} from "date-fns";
+
 
 
 
@@ -19,9 +25,27 @@ export class WeekCardComponent implements OnChanges {
   @Input() date: any;
 
 
-  constructor() { }
+  constructor(private weekService: WeekDatesService, private userService: UserService) { }
+
+  weeks = this.weekService.getWeekCollectionDetails();
+  dates = this.date;
+
+
+
 
   ngOnChanges( changes: SimpleChanges) {
+
+    this.weeks.subscribe(
+      values => {
+        // handle Data
+        console.log(values);
+        }
+    );
+
+
+
+
+    console.log(this.weeks);
 
     for (const property in changes) {
       if (property === 'currentUser') {

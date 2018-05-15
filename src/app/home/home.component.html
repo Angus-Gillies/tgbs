@@ -3,14 +3,14 @@
     <app-navigation></app-navigation>
   </nav>
 </header>
-<mat-card>
-  <h2 class="bounce-test" [@bounce]="bounce">Test FireBase and FireStore Angular app</h2>
-
-  <div  [@cards] >
-    <div *ngFor="let date of weekBeginning" >
-      <app-week-card [date] = date [currentUser]="currentUser" [golfers]="golfers"></app-week-card>
+<div class="pageContainer">
+  <mat-card>
+    <div  [@cards] >
+      <div>
+        <app-week-card [date]="weekBeginning" [currentUser]="currentUser" [golfers]="golfers"></app-week-card>
+      </div>
     </div>
-  </div>
+  </mat-card>
+</div>
 
-</mat-card>
 

@@ -58,3 +58,10 @@ typings/
 .env
 
 .idea/workspace.xml
+.idea/vcs.xml
+.idea/tgbs.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/codeStyles/Project.xml

@@ -4,18 +4,19 @@
   </nav>
 </header>
 <mat-card>
-  <!--<h2>Welcome
-    <strong *ngFor="let user of auth.userDetails | async">
-      <span>User Name: {{ user.displayName }}</span>
-    </strong>
-  </h2>-->
-
-  <!--<div *ngIf="auth.user | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
+  <div *ngFor="let user of currentUser">
+    <h2>Welcome
+      <strong >
+        <span>{{ user.displayName }}</span>
+      </strong>
+    </h2>
     <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
-    <p class="text-truncate">UID: {{ user.uid }}</p>
-    <button class="button" (click)="logout()">Logout</button>
-  </div>-->
+    <!--<p class="text-truncate">UID: {{ user.uid }}</p>-->
+    <!--<button class="button" (click)="logout()">Logout</button>-->
+  </div>
+
+
+
 
 
 <div [@cards]>

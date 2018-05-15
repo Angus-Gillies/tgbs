@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
               public userService: UserService,
               private weeks: WeekDatesService) {
 
-    this.weekBeginning = this.weeks.weeks;
+    this.weekBeginning = this.weeks.weeksBeginning;
   }
 
   ngOnInit() {
