@@ -29,7 +29,7 @@ export class WeekCardComponent implements OnChanges {
 
   weeks = this.weekService.getWeekCollectionDetails();
   dates = this.date;
-
+  weekBeginningDate = this.weekService.weeksBeginning;
 
 
 
@@ -37,7 +37,6 @@ export class WeekCardComponent implements OnChanges {
 
     this.weeks.subscribe(
       values => {
-        // handle Data
         console.log(values);
         }
     );

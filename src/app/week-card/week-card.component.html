@@ -1,8 +1,9 @@
 
 <mat-card class="week-card" *ngFor="let week of weeks | async">
   <mat-card-header>
-    <mat-card-title><strong>Week Beginning:</strong> {{ week.weekBeginning }}</mat-card-title>
+    <mat-card-title><strong>Week Beginning:</strong> {{ week.weekBeginning.seconds * 1000 | date:'fullDate' }}</mat-card-title>
   </mat-card-header>
+
 
 
   <img matCardImage src="../../assets/golfBanner.jpg">
@@ -43,6 +44,12 @@
         <mat-divider matLine></mat-divider>
         <p matLine>
           <mat-chip-list >
+            <span *ngIf="day === 'Sunday' && week.Sunday != 0">
+                <mat-chip color="primary" *ngFor="let player of week.Sunday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
+            </span>
+            <span *ngIf="day === 'Sunday' && week.Sunday == 0">
+                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
+            </span>
             <span *ngIf="day === 'Monday' && week.Monday != 0">
                 <mat-chip color="primary" *ngFor="let player of week.Monday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
             </span>
@@ -77,12 +84,6 @@
                 <mat-chip color="primary" *ngFor="let player of week.Saturday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
             </span>
             <span *ngIf="day === 'Saturday' && week.Saturday == 0">
-                <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
-            </span>
-            <span *ngIf="day === 'Sunday' && week.Sunday != 0">
-                <mat-chip color="primary" *ngFor="let player of week.Sunday"> <mat-icon matListIcon>thumb_up</mat-icon>{{ player }}</mat-chip>
-            </span>
-            <span *ngIf="day === 'Sunday' && week.Sunday == 0">
                 <mat-chip color="primary"> <mat-icon matListIcon>thumb_down</mat-icon>No Players Available to play.</mat-chip>
             </span>
           </mat-chip-list>
