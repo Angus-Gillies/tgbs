@@ -3,25 +3,22 @@
     <app-navigation></app-navigation>
   </nav>
 </header>
-<mat-card>
-  <div *ngFor="let user of currentUser">
-    <h2>Welcome
-      <strong >
-        <span>{{ user.displayName }}</span>
-      </strong>
-    </h2>
-    <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
-    <!--<p class="text-truncate">UID: {{ user.uid }}</p>-->
-    <!--<button class="button" (click)="logout()">Logout</button>-->
-  </div>
-
-
-
-
-
-<div [@cards]>
-  <div *ngFor="let date of weekBeginning" >
-    <app-week-card [date] = date [currentUser]="currentUser" [golfers]="golfers"></app-week-card>
-  </div>
+<div class="pageContainer">
+  <mat-card>
+    <div *ngFor="let user of currentUser">
+      <h2>Welcome
+        <strong >
+          <span>{{ user.displayName }}</span>
+        </strong>
+      </h2>
+      <img class="card-img-top" [src]="user.photoURL || 'https://api.adorable.io/avatars/109/fire.png'" width=50px>
+      <!--<p class="text-truncate">UID: {{ user.uid }}</p>-->
+      <!--<button class="button" (click)="logout()">Logout</button>-->
+    </div>
+    <div [@cards]>
+      <div>
+        <app-week-card [date]="weekBeginning" [currentUser]="currentUser" [golfers]="golfers"></app-week-card>
+      </div>
+    </div>
+  </mat-card>
 </div>
-</mat-card>

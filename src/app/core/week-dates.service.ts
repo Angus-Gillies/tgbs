@@ -52,19 +52,22 @@ export class WeekDatesService implements OnInit {
   }
 
   ngOnInit() {
-    // const result = format(new Date(2017, 12, 21), 'DD/MM/YYYY');
-    // return result;
+
   }
 
   getWeekCollectionDetails() {
-    this.weekCollection = this.afs.collection<Week>('week', ref => ref.orderBy('weekBeginning').limit(3));
-    this.week = this.weekCollection.snapshotChanges().map(actions => {
-      return actions.map(a => {
-        const data = a.payload.doc.data() as Week;
-        const id = a.payload.doc.id;
-        return { id, ...data };
+    this.weekCollection = this.afs.collection<Week>('week', ref => ref.orderBy('weekBeginning', 'desc').limit(3));
+    this.week = this.weekCollection.snapshotChanges()
+      .map(actions => {
+        actions.sort((a,b) => {
+          return a < b ? -1 : 1;
+        });
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Week;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
       });
-    });
     return this.week;
   }
 
@@ -78,6 +81,7 @@ export class WeekDatesService implements OnInit {
       storedWeeks.subscribe(
         values => {
           values.forEach(function (storedWeekElement) {
+            console.log( storedWeekElement );
             formattedStoredElement = format(storedWeekElement.weekBeginning.seconds * 1000, 'dddd Do MMMM');
             storedWeekElement.formattedDate = format(storedWeekElement.weekBeginning.seconds * 1000, 'dddd Do MMMM');
             storedFormatedDates.push(formattedStoredElement);
@@ -92,7 +96,7 @@ export class WeekDatesService implements OnInit {
           console.log("This week doesn't exist: " + weekDoesNotExist);
 
           // create a new Week document if one does not exist in Firestore
-          if (weekDoesNotExist && currentWeeks.length > values.length) {
+          if (weekDoesNotExist.length > 0 && currentWeeks.length >= values.length) {
             this.createWeekDocument(weekDoesNotExist);
           }
         }
@@ -137,11 +141,7 @@ export class WeekDatesService implements OnInit {
 
 
   getWeeks(currentDate) {
-
-    const nextWeek: any = '';
-
-    this.weekBeginning = addDays(startOfWeek(new Date(currentDate), {weekStartsOn: 0}), 7);
-    //let formatted = format(this.weekBeginning, 'dddd Do MMMM');
+    this.weekBeginning = startOfWeek(new Date(currentDate), {weekStartsOn: 0});
     let formatted = format(this.weekBeginning, 'dddd Do MMMM');
     this.weeksBeginning.push(formatted);
 

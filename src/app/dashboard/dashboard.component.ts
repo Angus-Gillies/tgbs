@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
 
     this.userService.user.subscribe((user) => {
         this.currentUser = user;
-        console.log('currentUser set from userService.');
+        console.log('currentUser ' + this.currentUser + ' set from userService.');
       },
       error => {  //  error returned
         console.log('Error reading user from userService');
@@ -62,23 +62,13 @@ export class DashboardComponent implements OnInit {
         console.log('Subscription userService Completed');
       });
 
-    console.log('currentUser set to: ', this.currentUser);
 
     this.userService.golfers.subscribe((golfers) => {
       this.golfers = golfers;
       console.log('users retrieved from userService');
     });
 
-  //   this.auth.userDetails.subscribe(
-  //     result => {
-  //     console.log(result);
-  //   },
-  //     error => {  //  error returned
-  //       Observable.throw(error);
-  //     },
-  //     () => { // observable completed
-  //       console.log('Subscription to auth.user Completed');
-  //     });
+
 
    }
 
