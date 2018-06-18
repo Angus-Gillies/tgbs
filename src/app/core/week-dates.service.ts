@@ -35,7 +35,7 @@ export class WeekDatesService implements OnInit {
   private weekCollection: AngularFirestoreCollection<Week>;
   public week: Observable<Week[]>;
 
-  private weekDocument: AngularFirestoreDocument<Week>;
+  public weekDocument: AngularFirestoreDocument<Week>;
   public weekDoc: Observable<Week[]>;
 
 
@@ -49,6 +49,7 @@ export class WeekDatesService implements OnInit {
     this.getWeekCollectionDetails();
     this.getWeeks(this.currentDate);
     this.checkWeekExists(this.weeksBeginning, this.week);
+
   }
 
   ngOnInit() {
@@ -72,6 +73,12 @@ export class WeekDatesService implements OnInit {
   }
 
 
+  update(id: string, data: any, pickedDate): Promise<void> {
+    return this.afs.collection(`week`).doc(`${id}`).update({[pickedDate]: data});
+  }
+
+
+
   checkWeekExists(currentWeeks, storedWeeks) {
     console.log('CurrrentWeeks are: ' + currentWeeks);
     if (currentWeeks) {
@@ -81,7 +88,7 @@ export class WeekDatesService implements OnInit {
       storedWeeks.subscribe(
         values => {
           values.forEach(function (storedWeekElement) {
-            console.log( storedWeekElement );
+           // console.log( storedWeekElement );
             formattedStoredElement = format(storedWeekElement.weekBeginning.seconds * 1000, 'dddd Do MMMM');
             storedWeekElement.formattedDate = format(storedWeekElement.weekBeginning.seconds * 1000, 'dddd Do MMMM');
             storedFormatedDates.push(formattedStoredElement);

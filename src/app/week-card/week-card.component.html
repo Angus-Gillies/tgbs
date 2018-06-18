@@ -1,7 +1,7 @@
 
 <mat-card class="week-card" *ngFor="let week of weeks | async; let weekIndex = index; trackBy:week;">
   <mat-card-header>
-    <mat-card-title><strong>Week Beginning:</strong> {{ week.weekBeginning.seconds * 1000 | date:'fullDate' }}</mat-card-title>
+    <mat-card-title><strong>Week Beginning:</strong> {{ week.weekBeginning.seconds * 1000 | date:'fullDate' }}  {{weekIndex}}</mat-card-title>
   </mat-card-header>
   <img matCardImage src="../../assets/golfBanner.jpg">
   <!--<div class="banner"></div>-->
@@ -15,14 +15,15 @@
         <mat-divider matLine></mat-divider>
         <div matLine>
           <h3>Available to play today</h3>
-          <p class="{{ week.weekBeginning.seconds }}">
+          <p class="{{ week.weekBeginning.seconds }},{{ day }}">
             <mat-slide-toggle
               id="{{week.weekBeginning.seconds}}"
               ngDefaultControl
               color="primary"
-              (change)="availChange($event)"
+              (change)="availChange(playObj,$event, weekIndex, DayIndex)"
+              [checked]="playObj[weekIndex][DayIndex]"
             >
-              I'm available  {{ play[DayIndex] }}
+              I'm available
             </mat-slide-toggle>
           </p>
         </div>
@@ -86,8 +87,8 @@
 
     <!--HomePage listing -->
     <mat-list *ngIf="router.url === '/home'">
-      <mat-list-item *ngFor="let day of week.days">
-        <h2 matLine> {{ day }} :</h2>
+      <mat-list-item  *ngFor="let day of week.days; let DayIndex = index; trackBy:day; let c = count;">
+        <h2 matLine> {{ day }} </h2>
         <p matLine>Course: {{ week.course }}, Tee Time: {{ week.teeTime }}</p>
         <mat-divider matLine></mat-divider>
         <p matLine>
